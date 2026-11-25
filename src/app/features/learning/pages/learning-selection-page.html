@@ -1,0 +1,59 @@
+<main class="selection-container">
+  <!-- Círculos decorativos flotantes -->
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+  <span class="orb orb-4"></span>
+
+  <header class="welcome">
+    <span class="welcome-tag">PLATAFORMA EDUCATIVA</span>
+    <h1>Bienvenido a Palabrilandia</h1>
+    <p>Practica ortografía y lectura a tu ritmo, con ayuda de Lengi.</p>
+  </header>
+
+  @if (step() === 'name') {
+    <section class="name-card">
+      <div class="greet">
+        <span class="lengi-small">🤖</span>
+        <p class="hello">Hola, soy <strong>Lengi</strong>.¿Cuál es tu nombre?</p>
+      </div>
+
+      <input [(ngModel)]="name" maxlength="15" placeholder="Tu nombre o apodo"
+             (keyup.enter)="next()" />
+
+      <button class="primary" (click)="next()" [disabled]="!name.trim()">Continuar →</button>
+      <button class="link" (click)="skip()">Entrar sin nombre</button>
+    </section>
+  } @else {
+    <section class="stage-step">
+      <div class="mascot">
+        <span class="lengi">🤖</span>
+        <div class="bubble">
+          {{ nickname ? 'Mucho gusto, ' + nickname + '.' : 'Mucho gusto.' }} ¿Con qué etapa quieres empezar?
+        </div>
+      </div>
+
+      <section class="age-options">
+        <article class="age-card children">
+          <div class="illustration">📚</div>
+          <span class="age-label">6 a 11 años</span>
+          <h3>Pequeños exploradores</h3>
+          <p>Aprende jugando con cuentos, palabras y retos divertidos.</p>
+          <button (click)="selectAgeGroup('children')">Empezar <span>→</span></button>
+        </article>
+
+        <article class="age-card teenagers">
+          <div class="illustration">📖</div>
+          <span class="age-label">12 a 17 años</span>
+          <h3>Jóvenes lectores</h3>
+          <p>Mejora tu escritura, interpreta textos y descubre la literatura.</p>
+          <button (click)="selectAgeGroup('teenagers')">Empezar <span>→</span></button>
+        </article>
+      </section>
+
+      <button class="link" (click)="back()">← Cambiar mi nombre</button>
+    </section>
+  }
+
+  <footer>Cada día es una nueva oportunidad para aprender algo.</footer>
+</main>

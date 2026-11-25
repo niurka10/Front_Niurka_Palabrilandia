@@ -1,0 +1,72 @@
+.ar { max-width: 640px; margin: 1.5rem auto; padding: 0 1rem; color: #064766; }
+
+.intro {
+  background: white; border-radius: 24px; padding: 1.8rem; text-align: center;
+  border-top: 6px solid #d6457a; box-shadow: 0 10px 30px rgba(24, 66, 94, .1);
+  .eyebrow { color: #d6457a; font-size: 0.75rem; font-weight: 800; letter-spacing: 3px; }
+  h1 { margin: 0.4rem 0; }
+  .lead { color: #617487; }
+  img { width: 130px; margin: 0.8rem 0; }
+  .error { color: crimson; }
+  small { display: block; margin-top: 0.8rem; color: #68798a; }
+}
+
+.steps {
+  display: flex; flex-direction: column; gap: 0.5rem; text-align: left; margin: 1rem 0;
+  div { background: #f6f9fc; border-radius: 12px; padding: 0.6rem 0.9rem; color: #23445a; }
+  b {
+    display: inline-grid; place-items: center; width: 24px; height: 24px; margin-right: 0.5rem;
+    border-radius: 50%; background: #d6457a; color: white; font-size: 0.85rem;
+  }
+}
+
+.start {
+  padding: 0.8rem 2rem; border: 0; border-radius: 12px; cursor: pointer;
+  background: #d6457a; color: white; font-weight: 700; font-size: 1.05rem;
+  &:disabled { opacity: 0.6; }
+}
+
+// ---------- Capa sobre la cámara ----------
+.hud { position: fixed; inset: 0; z-index: 100000; pointer-events: none; }
+.hud button, .quiz, .hint { pointer-events: auto; }
+
+.exit {
+  position: absolute; top: 80px; right: 16px; cursor: pointer;
+  padding: 0.6rem 1.1rem; border: 0; border-radius: 999px;
+  background: rgba(0, 0, 0, .65); color: white; font-weight: 700;
+}
+
+.hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  background: rgba(0, 0, 0, .7); color: white; padding: 0.8rem 1.4rem;
+  border-radius: 999px; font-weight: 600; white-space: nowrap;
+}
+
+// Tarjeta de la pregunta
+.quiz {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  width: min(520px, calc(100% - 28px)); box-sizing: border-box;
+  background: white; border-radius: 22px; padding: 1rem 1.2rem;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .4); max-height: 55vh; overflow-y: auto;
+
+  small { color: #d6457a; font-weight: 700; }
+  h3 { margin: 0.3rem 0 0.7rem; color: #064766; }
+  .fb { margin: 0.7rem 0 0; color: #23445a; line-height: 1.4; }
+}
+
+.opts { display: flex; flex-direction: column; gap: 0.45rem; }
+.opts button {
+  text-align: left; padding: 0.65rem 0.9rem; border: 2px solid #cfe3ee; border-radius: 12px;
+  background: white; color: #064766; font-weight: 600; font-size: 0.98rem; cursor: pointer;
+  &:hover:not(:disabled) { border-color: #087eaa; }
+  &.ok { background: #e3f6ec; border-color: #2e9e6b; }
+  &.bad { background: #fde8ee; border-color: #d6457a; }
+  &:disabled { cursor: default; }
+}
+
+.next {
+  margin-top: 0.7rem; width: 100%; padding: 0.7rem; border: 0; border-radius: 12px;
+  background: #d6457a; color: white; font-weight: 700; cursor: pointer;
+}
+
+.final { text-align: center; .big { font-size: 2.6rem; } }

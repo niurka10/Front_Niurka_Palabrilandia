@@ -1,0 +1,50 @@
+@if (open()) {
+  <section class="panel">
+    <header class="top">
+      <span class="avatar">🤖</span>
+      <div class="title">
+        <strong>Lengi</strong>
+        <small>Tu asistente de Lengua</small>
+      </div>
+      <button class="icon" title="Nueva conversación" (click)="reset()">↻</button>
+      <button class="icon" title="Cerrar" (click)="toggle()">✕</button>
+    </header>
+
+    <div class="body" #body>
+      @for (m of messages(); track $index) {
+        <div class="row" [class.user]="m.from === 'user'">
+          @if (m.from === 'bot') { <span class="mini">🤖</span> }
+          <div class="msg">{{ m.text }}</div>
+        </div>
+      }
+      @if (sending()) {
+        <div class="row"><span class="mini">🤖</span>
+          <div class="msg typing"><i></i><i></i><i></i></div>
+        </div>
+      }
+    </div>
+
+    @if (!finished()) {
+      <div class="chips">
+        @for (s of suggestions; track s) {
+          <button (click)="send(s)">{{ s }}</button>
+        }
+      </div>
+      <div class="input">
+        <input [(ngModel)]="question" (keyup.enter)="send()" placeholder="Escribe tu pregunta..." />
+        <button class="send" (click)="send()">➤</button>
+      </div>
+      <button class="end" (click)="endChat()">Terminar conversación</button>
+    } @else {
+      <div class="ended">
+        <button (click)="reset()">Nueva conversación</button>
+      </div>
+    }
+    <small class="note">No escribas tu nombre ni datos personales.</small>
+  </section>
+}
+
+<button class="fab" (click)="toggle()" [attr.aria-label]="open() ? 'Cerrar asistente' : 'Abrir asistente'">
+  {{ open() ? '✕' : '🤖' }}
+  @if (!open()) { <span class="hint">¿Dudas? Pregúntame</span> }
+</button>

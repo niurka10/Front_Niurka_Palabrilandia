@@ -1,0 +1,16 @@
+:root {
+  --blue-dark: #0b4a6b;
+  --blue: #0a7fab;
+  --yellow: #e5a826;
+  --green: #2e9e6b;
+  --pink: #d6457a;
+  --text: #475569;
+  --bg: #f1f6fd;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}

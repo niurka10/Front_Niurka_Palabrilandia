@@ -1,0 +1,115 @@
+
+<main class="learning-page" [class.kids]="group === 'children'">
+  <header class="welcome">
+    <div>
+      <span class="eyebrow">APRENDE Y PRACTICA</span>
+      <h1>¡Vamos a mejorar tu ortografía!</h1>
+      <p>Demuestra lo que sabes y aprende nuevas reglas de escritura.</p>
+    </div>
+
+    <div class="header-icon">✏️</div>
+  </header>
+
+  <section class="progress-card">
+    <div class="progress-info">
+      <div>
+        <span class="muted">Tu progreso</span>
+        <h3>{{ answered() }} de {{ exercises().length }} ejercicios</h3>
+      </div>
+
+      <div class="score">⭐ {{ score() }} puntos</div>
+    </div>
+
+    <div class="progress-track">
+      <div class="progress-fill" [style.width.%]="progress()"></div>
+    </div>
+  </section>
+
+  @if (loading()) {
+    <div class="message">Cargando tus ejercicios...</div>
+  }
+
+  @if (error()) {
+    <div class="message error">
+      No se pudieron cargar los ejercicios. Intenta nuevamente.
+    </div>
+  }
+
+  @if (!loading() && !error() && exercises().length === 0) {
+    <div class="message">Todavía no hay ejercicios disponibles.</div>
+  }
+
+  <section class="exercise-list">
+    @for (ex of exercises(); track ex.id; let i = $index) {
+      <article class="exercise-card">
+
+        <div class="exercise-heading">
+          <span class="number">EJERCICIO {{ i + 1 }}</span>
+
+          @if (results()[ex.id]) {
+            <span class="completed">✓ Respondido</span>
+          }
+        </div>
+
+        <h2>Completa la oración</h2>
+
+        <p class="sentence">{{ ex.sentence }}</p>
+
+        <p class="instruction">Selecciona la respuesta correcta:</p>
+
+        <div class="options">
+          @for (opt of ex.options; track opt) {
+            <button
+              type="button"
+              class="option"
+              [class.correct]="results()[ex.id]?.isCorrect && results()[ex.id]?.correctAnswer === opt"
+              [class.incorrect]="results()[ex.id] && !results()[ex.id].isCorrect && results()[ex.id].correctAnswer === opt"
+              [disabled]="!!results()[ex.id]"
+              (click)="answer(ex, opt)">
+              {{ opt }}
+            </button>
+          }
+        </div>
+
+        @if (results()[ex.id]; as r) {
+          <div class="feedback"
+               [class.success]="r.isCorrect"
+               [class.failure]="!r.isCorrect">
+
+            <strong>
+              {{ r.isCorrect ? feedback(true) : feedback(false) + ' Respuesta: ' + r.correctAnswer }}
+            </strong>
+
+            <p>{{ r.explanation }}</p>
+
+            @if (!r.isCorrect) {
+              <small>Respuesta correcta: {{ r.correctAnswer }}</small>
+            }
+          </div>
+        }
+
+      </article>
+    }
+  </section>
+
+  @if (exercises().length > 0 && answered() === exercises().length) {
+    <section class="final-card">
+      <div class="trophy">🏆</div>
+      <h2>¡Terminaste la actividad!</h2>
+      <p>Has respondido todos los ejercicios.</p>
+
+      <div class="final-score">
+        {{ score() }} / {{ exercises().length }} respuestas correctas
+      </div>
+
+      <p class="stars">
+        {{ '⭐'.repeat(starsFor(score(), exercises().length)) }}
+      </p>
+
+      <button class="restart" (click)="restart()">
+        Volver a practicar
+      </button>
+    </section>
+  }
+
+</main>

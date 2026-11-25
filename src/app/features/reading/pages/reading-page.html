@@ -1,0 +1,62 @@
+<main class="page" [class.kids]="group === 'children'">
+  <section class="hero">
+    <h1>{{ group === 'teenagers' ? 'Lee, interpreta y deduce' : '¡Vamos a leer un cuento!' }}</h1>
+    <p>Lee con atención y responde las preguntas.</p>
+  </section>
+
+  @if (loading()) { <p>Cargando...</p> }
+  @if (error()) { <p class="error">No se pudo conectar con el servidor.</p> }
+
+  @if (total() > 0) {
+  <div class="progress-card">
+    <span>{{ answered() }} de {{ total() }} preguntas</span>
+    <span class="points">⭐ {{ score() }} puntos</span>
+    <div class="bar">
+      <div class="fill" [style.width.%]="progress()"></div>
+    </div>
+  </div>
+  }
+
+  @for (t of texts(); track t.id) {
+  <article class="text-card">
+    <h2>{{ t.title }}</h2>
+    <p class="content">{{ t.content }}</p>
+  </article>
+
+  @for (q of t.questions; track q.id; let i = $index) {
+  <section class="question">
+    <small>PREGUNTA {{ i + 1 }}</small>
+    <h3>{{ q.text }}</h3>
+
+    <div class="options">
+      @for (opt of q.options; track opt) {
+      <button (click)="answer(q, opt)" [disabled]="!!results()[q.id]">{{ opt }}</button>
+      }
+    </div>
+
+    @if (results()[q.id]; as r) {
+    <p [class.correct]="r.isCorrect" [class.wrong]="!r.isCorrect">
+      {{ r.isCorrect ? feedback(true) : feedback(false) + ' Respuesta: ' + r.correctAnswer }}
+    </p>
+    <small>{{ r.explanation }}</small>
+    }
+  </section>
+  }
+  }
+
+  @if (finished()) {
+  <section class="result">
+    <h2>¡Terminaste!</h2>
+
+    <p>Acertaste {{ score() }} de {{ total() }} preguntas.</p>
+
+    <p class="stars">
+      {{ '⭐'.repeat(starsFor(score(), total())) }}
+    </p>
+
+    <p>¡Sigue practicando y aprendiendo!</p>
+
+    <button (click)="restart()">Intentar de nuevo</button>
+  </section>
+  }
+</main>

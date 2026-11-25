@@ -1,0 +1,35 @@
+<header class="header" [class.teens]="group === 'teenagers'">
+  <nav class="nav">
+    <!-- Logo -->
+    <a class="brand" routerLink="/dashboard" queryParamsHandling="preserve">
+      <span class="logo">🤖</span> Palabrilandia
+    </a>
+
+    <!-- Enlaces con ícono -->
+    <div class="links">
+      <a routerLink="/dashboard" queryParamsHandling="preserve" routerLinkActive="activo">
+        <span class="ic">🏠</span><span class="tx">Inicio</span>
+      </a>
+      <a routerLink="/spelling" queryParamsHandling="preserve" routerLinkActive="activo">
+        <span class="ic">✏️</span><span class="tx">Ortografía</span>
+      </a>
+      <a routerLink="/reading" queryParamsHandling="preserve" routerLinkActive="activo">
+        <span class="ic">📖</span><span class="tx">Lectura</span>
+      </a>
+      <a routerLink="/ar" queryParamsHandling="preserve" routerLinkActive="activo">
+        <span class="ic">📷</span><span class="tx">Realidad aumentada</span>
+      </a>
+    </div>
+
+    <!-- Perfil + salir (borra el apodo del dispositivo) -->
+    <div class="user">
+      @if (profile.nickname()) {
+        <span class="chip"><i class="badge">{{ initial }}</i>{{ profile.nickname() }}</span>
+      }
+      <a class="change" routerLink="/learning" (click)="profile.clear()">Cambiar etapa</a>
+    </div>
+  </nav>
+</header>
+
+<router-outlet />
+<app-assistant-bubble />

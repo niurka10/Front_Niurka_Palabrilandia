@@ -1,0 +1,16 @@
+<main class="page" [class.kids]="group === 'children'">
+  <h1>Hola, {{ profile.nickname() || title }} 👋</h1>
+  <p>Elige una actividad:</p>
+
+  <div class="grid">
+    @for (a of activities; track a.path) {
+      <a class="card" [routerLink]="a.path" [queryParams]="{ group: group }" [style.border-top-color]="a.color">
+        <span class="icon">{{ a.icon }}</span>
+        <h2>{{ a.name }}</h2>
+        <p>{{ a.text }}</p>
+      </a>
+    }
+  </div>
+
+  <p class="tip">¿Tienes dudas? Toca el botón 🤖 de abajo y pregúntale a Lengi.</p>
+</main>

@@ -1,0 +1,80 @@
+// Niños: amarillo. Adolescentes: azul (clase .teens)
+.header {
+  --accent: #e6a928;
+  --accent-soft: #fff4e0;
+  --accent-text: #8a6100;
+  position: sticky; top: 0; z-index: 20;
+  background: white;
+  box-shadow: 0 2px 14px rgba(11, 74, 107, 0.1);
+  padding: 0.6rem 2rem;          // espacio a los lados
+}
+
+.header.teens {
+  --accent: #087eaa;
+  --accent-soft: #e6f4fa;
+  --accent-text: #064766;
+}
+
+.nav {
+  display: flex; align-items: center; gap: 1rem;
+  width: 100%;
+  max-width: none;               // antes: 1100px
+  margin: 0;
+}
+
+.brand {
+  display: flex; align-items: center; gap: 0.5rem;
+  color: #064766; font-size: 1.3rem; font-weight: 800; text-decoration: none;
+  .logo { font-size: 1.6rem; }
+}
+
+.links {
+  display: flex; gap: 0.3rem; flex: 1;
+  justify-content: center;       // al centro
+  margin-left: 0;
+}
+
+.links a {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.95rem; border-radius: 999px;
+  color: #23445a; font-weight: 600; text-decoration: none;
+  transition: background .15s, color .15s;
+
+  &:hover { background: var(--accent-soft); }
+  &.activo { background: var(--accent); color: white; }
+}
+
+.user { display: flex; align-items: center; gap: 0.7rem; }
+
+// Apodo con inicial
+.chip {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: var(--accent-soft); color: var(--accent-text);
+  padding: 0.25rem 0.9rem 0.25rem 0.3rem; border-radius: 999px; font-weight: 600;
+  .badge {
+    width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent); color: white; font-style: normal; font-weight: 700; font-size: 0.9rem;
+  }
+}
+
+.change {
+  padding: 0.45rem 1rem; border: 1px solid var(--accent); border-radius: 999px;
+  color: var(--accent-text); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+  &:hover { background: var(--accent-soft); }
+}
+
+// Tablet: se oculta el chip del apodo
+@media (max-width: 900px) {
+  .chip { display: none; }
+}
+
+// Celular: solo íconos
+@media (max-width: 640px) {
+  .brand { font-size: 0; }
+  .brand .logo { font-size: 1.6rem; }
+  .links { justify-content: center; margin-left: 0; }
+  .links .tx { display: none; }
+  .links a { padding: 0.55rem 0.8rem; }
+  .links .ic { font-size: 1.3rem; }
+  .change { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
+}

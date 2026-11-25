@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.selection-container {
+  height: 100vh;
+  height: 100dvh;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #edf7fc, #f8f5ff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome { text-align: center; max-width: 750px; margin-bottom: 20px; }
+.welcome-tag { color: #087eaa; font-size: 12px; font-weight: 800; letter-spacing: 3px; }
+.welcome h1 { color: #064766; font-size: clamp(28px, 4.5vw, 44px); margin: 8px 0; }
+.welcome p { color: #617487; font-size: 16px; margin: 0; }
+
+.age-options {
+  width: 100%; max-width: 850px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;
+}
+.age-card {
+  padding: 26px; border-radius: 24px; background: white;
+  box-shadow: 0 12px 35px rgba(24, 66, 94, .09);
+  transition: transform .25s, box-shadow .25s;
+}
+.age-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(24, 66, 94, .15); }
+.children { border-top: 6px solid #f5bd43; }
+.teenagers { border-top: 6px solid #438bc0; }
+.illustration { font-size: 52px; margin-bottom: 12px; }
+.age-label { color: #087eaa; font-size: 13px; font-weight: 700; }
+.age-card h3 { color: #164b68; font-size: 23px; margin: 10px 0; }
+.age-card p { color: #68798a; line-height: 1.5; min-height: 48px; margin: 0; }
+.age-card button {
+  width: 100%; margin-top: 16px; padding: 14px; border: none; border-radius: 12px;
+  background: #087eaa; color: white; font-size: 15px; font-weight: 700; cursor: pointer;
+}
+.children button { background: #e6a928; }
+.age-card button:hover { filter: brightness(.92); }
+.age-card button span { margin-left: 8px; }
+
+footer { color: #718397; margin-top: 18px; text-align: center; font-size: 14px; }
+
+.mascot {
+  display: flex; align-items: center; justify-content: center; gap: 0.8rem; margin: 0.6rem 0 1rem;
+  .lengi { font-size: 3rem; animation: wave 2s ease-in-out infinite; }
+}
+.bubble {
+  background: white; color: #0b4a6b; font-weight: 600;
+  padding: 0.6rem 1.1rem; border-radius: 18px 18px 18px 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+@keyframes wave { 50% { transform: rotate(-8deg) translateY(-3px); } }
+
+.name-card {
+  background: white; border-radius: 28px; padding: 2rem 2.4rem;
+  width: min(460px, 100%); box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
+  box-shadow: 0 18px 45px rgba(24, 66, 94, .14);
+  border-top: 6px solid #087eaa;
+
+  input {
+    width: 100%; box-sizing: border-box; padding: 0.9rem 1.2rem; font-size: 1.1rem;
+    text-align: center; border: 2px solid #cfe3ee; border-radius: 14px; outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    &:focus { border-color: #087eaa; box-shadow: 0 0 0 4px rgba(8, 126, 170, .12); }
+  }
+}
+.greet { display: flex; align-items: center; gap: 1rem; text-align: left; }
+.lengi-small {
+  font-size: 2.6rem; width: 68px; height: 68px; flex-shrink: 0;
+  display: grid; place-items: center; border-radius: 50%;
+  background: #e6f4fa; animation: wave 2s ease-in-out infinite;
+}
+.hello { margin: 0; color: #0b4a6b; line-height: 1.45; font-size: 1.05rem; }
+
+.primary {
+  padding: 0.8rem 2.2rem; border: 0; border-radius: 12px;
+  background: #087eaa; color: white; font-weight: 700; font-size: 1rem; cursor: pointer;
+  &:disabled { opacity: 0.5; cursor: default; }
+}
+.link { background: none; border: 0; color: #0a7fab; cursor: pointer; text-decoration: underline; font-size: 0.95rem; }
+.stage-step { display: flex; flex-direction: column; align-items: center; }
+
+.selection-container::before,
+.selection-container::after {
+  content: ''; position: absolute; border-radius: 50%; z-index: 0; pointer-events: none;
+}
+.selection-container::before { width: 420px; height: 420px; top: -140px; right: -120px; background: rgba(67, 139, 192, 0.16); }
+.selection-container::after { width: 340px; height: 340px; bottom: -130px; left: -110px; background: rgba(245, 189, 67, 0.22); }
+.selection-container > * { position: relative; z-index: 1; }
+
+.orb {
+  position: absolute !important;
+  border-radius: 50%;
+  z-index: 0 !important;
+  pointer-events: none;
+  animation: float 7s ease-in-out infinite;
+}
+.orb-1 { width: 110px; height: 110px; top: 30%; left: 14%; background: rgba(8, 126, 170, 0.14); }
+.orb-2 { width: 70px; height: 70px; top: 22%; right: 18%; background: rgba(245, 189, 67, 0.35); animation-delay: -2s; }
+.orb-3 { width: 150px; height: 150px; bottom: 14%; right: 12%; background: rgba(67, 139, 192, 0.16); animation-delay: -4s; }
+.orb-4 { width: 54px; height: 54px; bottom: 24%; left: 22%; background: rgba(245, 189, 67, 0.4); animation-delay: -1s; }
+@keyframes float { 50% { transform: translateY(-16px); } }
+
+@media (max-width: 650px) {
+  .age-options { grid-template-columns: 1fr; gap: 12px; }
+  .selection-container { padding: 16px 14px; }
+  .orb-1, .orb-4 { display: none; }
+}
+@media (max-height: 760px) {
+  .illustration { font-size: 38px; margin-bottom: 6px; }
+  .age-card { padding: 16px; }
+  .age-card h3 { font-size: 19px; margin: 6px 0; }
+  .age-card p { min-height: 0; font-size: 14px; }
+  .age-card button { margin-top: 10px; padding: 10px; }
+  .welcome p { display: none; }
+}

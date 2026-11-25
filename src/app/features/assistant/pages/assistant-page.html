@@ -1,0 +1,33 @@
+<main class="page">
+  <section class="hero">
+    <h1>🤖 Asistente de Lengua</h1>
+    <p>Pregunta tus dudas de ortografía y gramática.</p>
+  </section>
+
+  <div class="chat">
+    @for (m of messages(); track $index) {
+    <div class="msg" [class.user]="m.from === 'user'">{{ m.text }}</div>
+    }
+    @if (sending()) { <div class="msg">Escribiendo...</div> }
+  </div>
+
+  @if (!finished()) {
+  <div class="suggestions">
+    @for (s of suggestions; track s) {
+    <button (click)="send(s)">{{ s }}</button>
+    }
+  </div>
+
+  <div class="input">
+    <input [(ngModel)]="question" (keyup.enter)="send()" placeholder="Escribe tu pregunta..." />
+    <button (click)="send()">Enviar</button>
+    <button class="secondary" (click)="endChat()">Terminar conversación</button>
+  </div>
+  <small class="note">No escribas tu nombre ni datos personales.</small>
+  } @else {
+  <div class="ended">
+    <p>La conversación terminó.</p>
+    <button (click)="newChat()">Nueva conversación</button>
+  </div>
+  }
+</main>

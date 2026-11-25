@@ -1,0 +1,289 @@
+
+:host {
+  display: block;
+  min-height: 100%;
+  background: #f4f7fb;
+  color: #243447;
+  font-family: Arial, sans-serif;
+}
+
+.learning-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 24px 60px;
+}
+
+.welcome {
+  background: linear-gradient(120deg, #00537e, #087eaa);
+  color: white;
+  border-radius: 22px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 8px 24px #07598520;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  opacity: .8;
+}
+
+.welcome h1 {
+  font-size: clamp(24px, 4vw, 34px);
+  margin: 12px 0;
+}
+
+.welcome p {
+  margin: 0;
+  opacity: .9;
+  line-height: 1.6;
+}
+
+.header-icon {
+  font-size: 65px;
+  background: #ffffff20;
+  border-radius: 20px;
+  padding: 15px;
+}
+
+.progress-card,
+.exercise-card,
+.final-card {
+  background: white;
+  border: 1px solid #e7edf3;
+  border-radius: 18px;
+  padding: 24px;
+  margin-top: 22px;
+  box-shadow: 0 4px 15px #24344708;
+}
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.muted {
+  color: #758397;
+  font-size: 13px;
+}
+
+.progress-info h3 {
+  margin: 6px 0 0;
+  font-size: 17px;
+}
+
+.score {
+  color: #a16b00;
+  background: #fff6d9;
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.progress-track {
+  height: 10px;
+  background: #edf1f5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #12a879;
+  border-radius: 20px;
+  transition: width .3s;
+}
+
+.exercise-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.exercise-card {
+  margin: 0;
+  padding: 23px;
+}
+
+.exercise-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.number {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #087eaa;
+}
+
+.completed {
+  color: #07845f;
+  background: #e7f8f0;
+  border-radius: 20px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.exercise-card h2 {
+  font-size: 19px;
+  margin: 20px 0 12px;
+}
+
+.sentence {
+  background: #f1f7fb;
+  border-left: 4px solid #0782ad;
+  padding: 17px;
+  border-radius: 8px;
+  line-height: 1.7;
+  font-size: 16px;
+  min-height: 45px;
+}
+
+.instruction {
+  color: #718096;
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.option {
+  border: 2px solid #dce6ee;
+  background: white;
+  color: #24445b;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.option:hover:not(:disabled) {
+  border-color: #087eaa;
+  background: #eff9fd;
+  transform: translateY(-2px);
+}
+
+.option:disabled {
+  cursor: default;
+  opacity: .8;
+}
+
+.option.correct {
+  background: #e5f8ef;
+  border-color: #16a36e;
+  color: #08734b;
+}
+
+.option.incorrect {
+  background: #fff0ef;
+  border-color: #dc625a;
+  color: #b63c35;
+}
+
+.feedback {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.feedback p {
+  margin: 7px 0;
+  font-size: 14px;
+}
+
+.feedback.success {
+  background: #e9f8f0;
+  color: #08734b;
+}
+
+.feedback.failure {
+  background: #fff1ef;
+  color: #a43b34;
+}
+
+.final-card {
+  text-align: center;
+  padding: 35px 20px;
+}
+
+.trophy {
+  font-size: 55px;
+}
+
+.final-card h2 {
+  color: #075985;
+}
+
+.final-score {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.restart {
+  background: #075985;
+  color: white;
+  border: 0;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.message {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.error {
+  color: #b63c35;
+}
+
+@media (max-width: 650px) {
+  .learning-page {
+    padding: 20px 14px 40px;
+  }
+
+  .welcome {
+    padding: 23px;
+  }
+
+  .header-icon {
+    font-size: 40px;
+    padding: 10px;
+  }
+
+  .exercise-list {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-info {
+    align-items: flex-start;
+  }
+}
+
+.learning-page.kids { font-size: 1.1rem; }
+
+.stars { font-size: 2rem; margin: 0.4rem 0; }

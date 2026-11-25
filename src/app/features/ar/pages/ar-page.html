@@ -1,0 +1,69 @@
+<main class="ar">
+  @if (state() !== 'running') {
+    <section class="intro">
+      <span class="eyebrow">REALIDAD AUMENTADA</span>
+      <h1>{{ title }}</h1>
+      <p class="lead">{{ lead }}</p>
+
+      <div class="steps">
+        <div><b>1</b> Abre el marcador en otra pantalla o imprímelo.</div>
+        <div><b>2</b> Pulsa el botón y acepta la cámara.</div>
+        <div><b>3</b> Apunta al marcador, a unos 30 cm.</div>
+      </div>
+
+      <img src="hiro.png" alt="Marcador" />
+
+      @if (state() === 'error') { <p class="error">No se pudo cargar la AR.</p> }
+
+      <button class="start" (click)="start()" [disabled]="state() === 'loading'">
+        {{ state() === 'loading' ? 'Cargando...' : '📷 Activar cámara' }}
+      </button>
+      <small>🔒 La cámara no guarda ni envía imágenes.</small>
+    </section>
+  }
+
+  <!-- Aquí se inserta la escena 3D -->
+  <div #host></div>
+
+  @if (state() === 'running') {
+    <div class="hud">
+      <button class="exit" (click)="exit()">✕ Terminar</button>
+
+      @if (!found()) {
+        <div class="hint">Apunta la cámara al marcador</div>
+      } @else if (!finished()) {
+        <!-- Pregunta sobre el cuento -->
+      <div class="quiz">
+        <small>{{ icon }} Pregunta {{ index() + 1 }} de {{ questions.length }}</small>
+
+        <h3>{{ current.text }}</h3>
+
+          <div class="opts">
+            @for (o of current.options; track o) {
+              <button
+                [class.ok]="chosen() && o === current.answer"
+                [class.bad]="chosen() === o && o !== current.answer"
+                [disabled]="!!chosen()"
+                (click)="pick(o)">{{ o }}</button>
+            }
+          </div>
+
+          @if (chosen()) {
+            <p class="fb"><strong>{{ feedback(chosen() === current.answer) }}</strong> {{ current.explanation }}</p>
+            <button class="next" (click)="next()">
+              {{ index() + 1 < questions.length ? 'Siguiente →' : 'Ver resultado' }}
+            </button>
+          }
+        </div>
+      } @else {
+        <!-- Resultado final -->
+        <div class="quiz final">
+          <div class="big">🏆</div>
+          <h3>Acertaste {{ score() }} de {{ questions.length }}</h3>
+          <p>{{ group === 'teenagers' ? 'Actividad completada. Tus estrellas ya están en el inicio.' : '¡Lo lograste! Tus estrellas ya están en el inicio ⭐' }}</p>
+          <button class="next" (click)="exit()">Terminar</button>
+        </div>
+      }
+    </div>
+  }
+</main>
